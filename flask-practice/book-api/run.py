@@ -1,9 +1,4 @@
-from ast import parse
-from asyncio.base_subprocess import BaseSubprocessTransport
-from email import message
 import json
-from os import abort
-from unicodedata import category
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 
@@ -90,7 +85,7 @@ class Book(Resource):
             return { "message": f"Book {book_id} not found!"}, 404
         del books[book_id]
         write_changes_to_file()
-        return "", 204
+        return { "message": f"Book {book_id} deleted"}, 204
 
 
 api.add_resource(Book, '/books/<book_id>')
