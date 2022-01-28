@@ -31,14 +31,16 @@ class FlaskTest(unittest.TestCase):
         tester = app.test_client(self)
         data = {"title": "test book"}
         response = tester.post("/books", data=data)
+        print(response)
         status_code = response.status_code
         self.assertEqual(status_code, 201)
     
     def test_delete_book(self):
         tester = app.test_client(self)
-        response = tester.delete("/books/book5")
+        response = tester.delete("/books/ghkk")
+        print(response)
         status_code = response.status_code
-        self.assertEqual(status_code, 204)
+        self.assertEqual(status_code, 404)
 
 if __name__ == '__main__':
     unittest.main()
